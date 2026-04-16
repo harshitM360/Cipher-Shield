@@ -1,0 +1,111 @@
+{
+  "scenario_id": "scenario-bundle--malicious-002",
+  "hostname": "finance-laptop-02",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "matched_rule_count": 3,
+  "highest_rule_level": "critical",
+  "attack_tags": [
+    "attack.t1059",
+    "attack.t1059.001",
+    "attack.t1204",
+    "attack.t1490"
+  ],
+  "score_breakdown": {
+    "rule_score": 76,
+    "behavior_score": 46,
+    "total_score": 100,
+    "severity": "critical",
+    "confidence": 0.97,
+    "contributing_factors": [
+      {
+        "type": "rule",
+        "name": "Suspicious Shadow Copy Deletion",
+        "weight": 40,
+        "evidence": {
+          "backup_delete_attempt_count": 1,
+          "event_type_counts": {
+            "process_create": 1,
+            "backup_delete_attempt": 1,
+            "file_modify": 1,
+            "file_rename": 2
+          }
+        }
+      },
+      {
+        "type": "rule",
+        "name": "Suspicious Command Execution",
+        "weight": 18,
+        "evidence": {
+          "suspicious_command_count": 1,
+          "command_exec_count": 0
+        }
+      },
+      {
+        "type": "rule",
+        "name": "Suspicious Parent-Child Process Chain",
+        "weight": 18,
+        "evidence": {
+          "suspicious_parent_child_count": 1,
+          "unique_processes": [
+            "evil_encryptor.exe",
+            "powershell.exe",
+            "vssadmin.exe"
+          ]
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Backup deletion attempt present",
+        "weight": 10,
+        "evidence": {
+          "backup_delete_attempt_count": 1
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Suspicious parent-child process chain",
+        "weight": 8,
+        "evidence": {
+          "suspicious_parent_child_count": 1
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Suspicious command usage",
+        "weight": 8,
+        "evidence": {
+          "suspicious_command_count": 1
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Office application spawned suspicious scripting activity",
+        "weight": 10,
+        "evidence": {
+          "suspicious_parent_child_count": 1,
+          "suspicious_command_count": 1
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Multiple extension changes",
+        "weight": 10,
+        "evidence": {
+          "extension_change_count": 2
+        }
+      }
+    ]
+  },
+  "recommended_actions": [
+    "Isolate the affected host immediately.",
+    "Preserve volatile evidence and collect forensic artifacts.",
+    "Protect recovery infrastructure and verify shadow copy availability.",
+    "Review the suspicious process tree and terminate malicious processes if confirmed.",
+    "Assess impacted user files and block further write activity if possible."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "scenario_id": "scenario-bundle--benign-003",
+  "hostname": "ops-workstation-01",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint",
+    "admin-activity"
+  ],
+  "matched_rule_count": 0,
+  "highest_rule_level": "info",
+  "attack_tags": [],
+  "score_breakdown": {
+    "rule_score": 0,
+    "behavior_score": 5,
+    "total_score": 5,
+    "severity": "info",
+    "confidence": 0.185,
+    "contributing_factors": [
+      {
+        "type": "behavior",
+        "name": "Very high burst activity score",
+        "weight": 5,
+        "evidence": {
+          "burst_activity_score": 5.556
+        }
+      }
+    ]
+  },
+  "recommended_actions": [
+    "Continue monitoring; current activity does not justify containment."
+  ]
+}

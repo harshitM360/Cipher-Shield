@@ -1,0 +1,94 @@
+{
+  "scenario_id": "scenario-bundle--malicious-003",
+  "hostname": "design-laptop-03",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "matched_rule_count": 3,
+  "highest_rule_level": "critical",
+  "attack_tags": [
+    "attack.t1105",
+    "attack.t1486"
+  ],
+  "score_breakdown": {
+    "rule_score": 70,
+    "behavior_score": 33,
+    "total_score": 100,
+    "severity": "critical",
+    "confidence": 0.97,
+    "contributing_factors": [
+      {
+        "type": "rule",
+        "name": "Bulk Extension Rename",
+        "weight": 25,
+        "evidence": {
+          "extension_change_count": 3,
+          "file_rename_count": 3
+        }
+      },
+      {
+        "type": "rule",
+        "name": "Mass File Changes in Short Window",
+        "weight": 30,
+        "evidence": {
+          "file_activity_count": 5,
+          "max_file_events_in_10s": 5,
+          "unique_files_touched": 6
+        }
+      },
+      {
+        "type": "rule",
+        "name": "Suspicious Outbound Connection During File Churn",
+        "weight": 15,
+        "evidence": {
+          "network_connection_count": 1,
+          "file_activity_count": 5,
+          "burst_activity_score": 5.833
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "High file activity burst",
+        "weight": 10,
+        "evidence": {
+          "max_file_events_in_10s": 5,
+          "file_activity_count": 5
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Multiple extension changes",
+        "weight": 10,
+        "evidence": {
+          "extension_change_count": 3
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Network activity during file churn",
+        "weight": 8,
+        "evidence": {
+          "network_connection_count": 1,
+          "file_activity_count": 5
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Very high burst activity score",
+        "weight": 5,
+        "evidence": {
+          "burst_activity_score": 5.833
+        }
+      }
+    ]
+  },
+  "recommended_actions": [
+    "Isolate the affected host immediately.",
+    "Preserve volatile evidence and collect forensic artifacts.",
+    "Assess impacted user files and block further write activity if possible.",
+    "Inspect outbound connections for potential command-and-control or staging activity."
+  ]
+}

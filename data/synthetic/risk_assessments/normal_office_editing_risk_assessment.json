@@ -1,0 +1,23 @@
+{
+  "scenario_id": "scenario-bundle--benign-001",
+  "hostname": "hr-laptop-01",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint"
+  ],
+  "matched_rule_count": 0,
+  "highest_rule_level": "info",
+  "attack_tags": [],
+  "score_breakdown": {
+    "rule_score": 0,
+    "behavior_score": 0,
+    "total_score": 0,
+    "severity": "info",
+    "confidence": 0.15,
+    "contributing_factors": []
+  },
+  "recommended_actions": [
+    "Continue monitoring; current activity does not justify containment."
+  ]
+}

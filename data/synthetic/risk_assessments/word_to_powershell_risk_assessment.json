@@ -1,0 +1,77 @@
+{
+  "scenario_id": "scenario-bundle--malicious-001",
+  "hostname": "finance-laptop-01",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "matched_rule_count": 2,
+  "highest_rule_level": "high",
+  "attack_tags": [
+    "attack.t1059",
+    "attack.t1059.001",
+    "attack.t1204"
+  ],
+  "score_breakdown": {
+    "rule_score": 36,
+    "behavior_score": 26,
+    "total_score": 62,
+    "severity": "high",
+    "confidence": 0.664,
+    "contributing_factors": [
+      {
+        "type": "rule",
+        "name": "Suspicious Command Execution",
+        "weight": 18,
+        "evidence": {
+          "suspicious_command_count": 2,
+          "command_exec_count": 1
+        }
+      },
+      {
+        "type": "rule",
+        "name": "Suspicious Parent-Child Process Chain",
+        "weight": 18,
+        "evidence": {
+          "suspicious_parent_child_count": 2,
+          "unique_processes": [
+            "powershell.exe",
+            "winword.exe"
+          ]
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Suspicious parent-child process chain",
+        "weight": 8,
+        "evidence": {
+          "suspicious_parent_child_count": 2
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Suspicious command usage",
+        "weight": 8,
+        "evidence": {
+          "suspicious_command_count": 2
+        }
+      },
+      {
+        "type": "behavior",
+        "name": "Office application spawned suspicious scripting activity",
+        "weight": 10,
+        "evidence": {
+          "suspicious_parent_child_count": 2,
+          "suspicious_command_count": 2
+        }
+      }
+    ]
+  },
+  "recommended_actions": [
+    "Isolate the affected host immediately.",
+    "Preserve volatile evidence and collect forensic artifacts.",
+    "Review the suspicious process tree and terminate malicious processes if confirmed."
+  ]
+}
