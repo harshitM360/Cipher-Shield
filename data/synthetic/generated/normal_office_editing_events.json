@@ -1,0 +1,188 @@
+[
+  {
+    "time": "2026-04-16T09:00:00Z",
+    "activity_name": "Process Launch",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-001:event--001:1"
+    },
+    "device": {
+      "hostname": "hr-laptop-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "winword.exe",
+        "pid": 4000,
+        "command_line": "C:/Program Files/Microsoft Office/root/Office16/WINWORD.EXE"
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "explorer.exe",
+        "pid": 4001
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-001",
+      "stage": "benign"
+    },
+    "event_type": "process_create"
+  },
+  {
+    "time": "2026-04-16T09:00:06Z",
+    "activity_name": "File Modify",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-001:event--002:2"
+    },
+    "device": {
+      "hostname": "hr-laptop-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Bob"
+      },
+      "process": {
+        "name": "winword.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": null,
+    "file": {
+      "path": "C:/Users/Bob/Documents/offer_letter.docx",
+      "new_path": null
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-001",
+      "stage": "benign"
+    },
+    "event_type": "file_modify"
+  },
+  {
+    "time": "2026-04-16T09:00:18Z",
+    "activity_name": "File Modify",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-001:event--003:3"
+    },
+    "device": {
+      "hostname": "hr-laptop-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Bob"
+      },
+      "process": {
+        "name": "winword.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": null,
+    "file": {
+      "path": "C:/Users/Bob/Documents/policy_notes.docx",
+      "new_path": null
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-001",
+      "stage": "benign"
+    },
+    "event_type": "file_modify"
+  },
+  {
+    "time": "2026-04-16T09:00:40Z",
+    "activity_name": "File Create",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-001:event--004:4"
+    },
+    "device": {
+      "hostname": "hr-laptop-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Bob"
+      },
+      "process": {
+        "name": "winword.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": null,
+    "file": {
+      "path": "C:/Users/Bob/Documents/policy_notes_autosave.tmp",
+      "new_path": null
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-001",
+      "stage": "benign"
+    },
+    "event_type": "file_create"
+  }
+]

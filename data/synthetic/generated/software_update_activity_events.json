@@ -1,0 +1,241 @@
+[
+  {
+    "time": "2026-04-16T09:05:00Z",
+    "activity_name": "Process Launch",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-002:event--001:1"
+    },
+    "device": {
+      "hostname": "eng-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "updater.exe",
+        "pid": 4000,
+        "command_line": "C:/Program Files/App/updater.exe --silent"
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "services.exe",
+        "pid": 4001
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "software-update"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-002",
+      "stage": "benign"
+    },
+    "event_type": "process_create"
+  },
+  {
+    "time": "2026-04-16T09:05:04Z",
+    "activity_name": "File Modify",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-002:event--002:2"
+    },
+    "device": {
+      "hostname": "eng-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "updater.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": null,
+    "file": {
+      "path": "C:/Program Files/App/app.exe",
+      "new_path": null
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "software-update"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-002",
+      "stage": "benign"
+    },
+    "event_type": "file_modify"
+  },
+  {
+    "time": "2026-04-16T09:05:08Z",
+    "activity_name": "File Modify",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-002:event--003:3"
+    },
+    "device": {
+      "hostname": "eng-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "updater.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": null,
+    "file": {
+      "path": "C:/Program Files/App/app.dll",
+      "new_path": null
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "software-update"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-002",
+      "stage": "benign"
+    },
+    "event_type": "file_modify"
+  },
+  {
+    "time": "2026-04-16T09:05:12Z",
+    "activity_name": "File Create",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-002:event--004:4"
+    },
+    "device": {
+      "hostname": "eng-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "updater.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": null,
+    "file": {
+      "path": "C:/ProgramData/App/update.log",
+      "new_path": null
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "software-update"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-002",
+      "stage": "benign"
+    },
+    "event_type": "file_create"
+  },
+  {
+    "time": "2026-04-16T09:05:25Z",
+    "activity_name": "Process Terminate",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-002:event--005:5"
+    },
+    "device": {
+      "hostname": "eng-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "updater.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "services.exe",
+        "pid": 4001
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "software-update"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-002",
+      "stage": "benign"
+    },
+    "event_type": "process_terminate"
+  }
+]

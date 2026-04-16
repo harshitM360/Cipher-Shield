@@ -1,0 +1,241 @@
+[
+  {
+    "time": "2026-04-16T09:10:00Z",
+    "activity_name": "Process Launch",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-003:event--001:1"
+    },
+    "device": {
+      "hostname": "ops-workstation-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "powershell.exe",
+        "pid": 4000,
+        "command_line": "powershell.exe -File C:/AdminTools/rename_archives.ps1"
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "explorer.exe",
+        "pid": 4001
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-003",
+      "stage": "benign"
+    },
+    "event_type": "process_create"
+  },
+  {
+    "time": "2026-04-16T09:10:03Z",
+    "activity_name": "File Rename",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "medium",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-003:event--002:2"
+    },
+    "device": {
+      "hostname": "ops-workstation-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "powershell.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": null,
+    "file": {
+      "path": "D:/Archive/Q1/report_old_01.txt",
+      "new_path": "D:/Archive/Q1/report_2026_01.txt"
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-003",
+      "stage": "benign"
+    },
+    "event_type": "file_rename"
+  },
+  {
+    "time": "2026-04-16T09:10:05Z",
+    "activity_name": "File Rename",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "medium",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-003:event--003:3"
+    },
+    "device": {
+      "hostname": "ops-workstation-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "powershell.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": null,
+    "file": {
+      "path": "D:/Archive/Q1/report_old_02.txt",
+      "new_path": "D:/Archive/Q1/report_2026_02.txt"
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-003",
+      "stage": "benign"
+    },
+    "event_type": "file_rename"
+  },
+  {
+    "time": "2026-04-16T09:10:07Z",
+    "activity_name": "File Rename",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "medium",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-003:event--004:4"
+    },
+    "device": {
+      "hostname": "ops-workstation-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "powershell.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": null,
+    "file": {
+      "path": "D:/Archive/Q1/report_old_03.txt",
+      "new_path": "D:/Archive/Q1/report_2026_03.txt"
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-003",
+      "stage": "benign"
+    },
+    "event_type": "file_rename"
+  },
+  {
+    "time": "2026-04-16T09:10:09Z",
+    "activity_name": "Process Terminate",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "low",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--benign-003:event--005:5"
+    },
+    "device": {
+      "hostname": "ops-workstation-01",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "powershell.exe",
+        "pid": 4000,
+        "command_line": null
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "explorer.exe",
+        "pid": 4001
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--benign-003",
+      "stage": "benign"
+    },
+    "event_type": "process_terminate"
+  }
+]

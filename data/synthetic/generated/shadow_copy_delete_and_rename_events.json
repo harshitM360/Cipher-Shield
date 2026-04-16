@@ -1,0 +1,256 @@
+[
+  {
+    "time": "2026-04-16T09:20:00Z",
+    "activity_name": "Process Launch",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "medium",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--malicious-002:event--001:1"
+    },
+    "device": {
+      "hostname": "finance-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Alice"
+      },
+      "process": {
+        "name": "powershell.exe",
+        "pid": 4000,
+        "command_line": "powershell.exe -File C:/Users/Alice/AppData/Local/Temp/loader.ps1"
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "winword.exe",
+        "pid": 4001
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--malicious-002",
+      "stage": "pre-impact"
+    },
+    "event_type": "process_create"
+  },
+  {
+    "time": "2026-04-16T09:20:06Z",
+    "activity_name": "Backup Delete Attempt",
+    "class_name": "Process Activity",
+    "category_name": "System Activity",
+    "severity": "high",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--malicious-002:event--002:2"
+    },
+    "device": {
+      "hostname": "finance-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": null
+      },
+      "process": {
+        "name": "vssadmin.exe",
+        "pid": 4002,
+        "command_line": "vssadmin delete shadows /all /quiet"
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "powershell.exe",
+        "pid": 4000
+      }
+    },
+    "file": null,
+    "network": null,
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--malicious-002",
+      "stage": "pre-impact"
+    },
+    "event_type": "backup_delete_attempt"
+  },
+  {
+    "time": "2026-04-16T09:20:15Z",
+    "activity_name": "File Modify",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "high",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--malicious-002:event--003:3"
+    },
+    "device": {
+      "hostname": "finance-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Alice"
+      },
+      "process": {
+        "name": "evil_encryptor.exe",
+        "pid": 4003,
+        "command_line": null
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "powershell.exe",
+        "pid": 4000
+      }
+    },
+    "file": {
+      "path": "C:/Users/Alice/Documents/budget.xlsx",
+      "new_path": null
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--malicious-002",
+      "stage": "impact"
+    },
+    "event_type": "file_modify"
+  },
+  {
+    "time": "2026-04-16T09:20:16Z",
+    "activity_name": "File Rename",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "critical",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--malicious-002:event--004:4"
+    },
+    "device": {
+      "hostname": "finance-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Alice"
+      },
+      "process": {
+        "name": "evil_encryptor.exe",
+        "pid": 4003,
+        "command_line": null
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "powershell.exe",
+        "pid": 4000
+      }
+    },
+    "file": {
+      "path": "C:/Users/Alice/Documents/budget.xlsx",
+      "new_path": "C:/Users/Alice/Documents/budget.locked"
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--malicious-002",
+      "stage": "impact"
+    },
+    "event_type": "file_rename"
+  },
+  {
+    "time": "2026-04-16T09:20:17Z",
+    "activity_name": "File Rename",
+    "class_name": "File Activity",
+    "category_name": "System Activity",
+    "severity": "critical",
+    "status": "success",
+    "metadata": {
+      "product_name": "synthetic-generator",
+      "version": "0.1.0",
+      "source_name": "synthetic-scenario",
+      "source_event_id": "scenario-bundle--malicious-002:event--005:5"
+    },
+    "device": {
+      "hostname": "finance-laptop-02",
+      "os": {
+        "name": "Windows 11"
+      }
+    },
+    "actor": {
+      "user": {
+        "name": "Alice"
+      },
+      "process": {
+        "name": "evil_encryptor.exe",
+        "pid": 4003,
+        "command_line": null
+      }
+    },
+    "process": {
+      "parent_process": {
+        "name": "powershell.exe",
+        "pid": 4000
+      }
+    },
+    "file": {
+      "path": "C:/Users/Alice/Documents/report.docx",
+      "new_path": "C:/Users/Alice/Documents/report.locked"
+    },
+    "network": null,
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "scenario": {
+      "scenario_id": "scenario-bundle--malicious-002",
+      "stage": "impact"
+    },
+    "event_type": "file_rename"
+  }
+]
