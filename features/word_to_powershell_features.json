@@ -1,0 +1,46 @@
+{
+  "scenario_id": "scenario-bundle--malicious-001",
+  "hostname": "finance-laptop-01",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "total_events": 3,
+  "time_span_seconds": 7.0,
+  "process_create_count": 2,
+  "process_terminate_count": 0,
+  "command_exec_count": 1,
+  "network_connection_count": 0,
+  "backup_delete_attempt_count": 0,
+  "file_create_count": 0,
+  "file_modify_count": 0,
+  "file_rename_count": 0,
+  "file_delete_count": 0,
+  "file_activity_count": 0,
+  "unique_process_count": 2,
+  "unique_processes": [
+    "powershell.exe",
+    "winword.exe"
+  ],
+  "unique_files_touched": 0,
+  "unique_directories_touched": 0,
+  "sensitive_directory_touch_count": 0,
+  "extension_change_count": 0,
+  "suspicious_parent_child_count": 2,
+  "suspicious_parent_child": true,
+  "suspicious_command_count": 2,
+  "suspicious_command": true,
+  "backup_delete_attempt": false,
+  "max_events_in_10s": 3,
+  "max_file_events_in_10s": 0,
+  "burst_activity_score": 4.286,
+  "stage_counts": {
+    "pre-impact": 3
+  },
+  "event_type_counts": {
+    "process_create": 2,
+    "command_exec": 1
+  }
+}
