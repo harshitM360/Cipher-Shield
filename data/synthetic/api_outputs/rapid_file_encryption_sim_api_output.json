@@ -1,0 +1,334 @@
+{
+  "scenario_name": "rapid_file_encryption_sim",
+  "scenario_id": "scenario-bundle--malicious-003",
+  "feature_summary": {
+    "scenario_id": "scenario-bundle--malicious-003",
+    "hostname": "design-laptop-03",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "total_events": 7,
+    "time_span_seconds": 12.0,
+    "process_create_count": 1,
+    "process_terminate_count": 0,
+    "command_exec_count": 0,
+    "network_connection_count": 1,
+    "backup_delete_attempt_count": 0,
+    "file_create_count": 0,
+    "file_modify_count": 2,
+    "file_rename_count": 3,
+    "file_delete_count": 0,
+    "file_activity_count": 5,
+    "unique_process_count": 1,
+    "unique_processes": [
+      "payload.exe"
+    ],
+    "unique_files_touched": 6,
+    "unique_directories_touched": 3,
+    "sensitive_directory_touch_count": 0,
+    "extension_change_count": 3,
+    "suspicious_parent_child_count": 0,
+    "suspicious_parent_child": false,
+    "suspicious_command_count": 0,
+    "suspicious_command": false,
+    "backup_delete_attempt": false,
+    "max_events_in_10s": 6,
+    "max_file_events_in_10s": 5,
+    "burst_activity_score": 5.833,
+    "stage_counts": {
+      "pre-impact": 2,
+      "impact": 5
+    },
+    "event_type_counts": {
+      "process_create": 1,
+      "network_connect": 1,
+      "file_modify": 2,
+      "file_rename": 3
+    }
+  },
+  "rule_evaluation": {
+    "scenario_id": "scenario-bundle--malicious-003",
+    "hostname": "design-laptop-03",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "triggered_rules": [
+      {
+        "rule_id": "b6fc5f4d-79fb-49eb-92b2-a5dd47751005",
+        "title": "Bulk Extension Rename",
+        "level": "high",
+        "description": "Detects multiple extension-changing renames, a common impact signal during ransomware encryption.",
+        "tags": [
+          "attack.t1486",
+          "ransomware"
+        ],
+        "evidence": {
+          "extension_change_count": 3,
+          "file_rename_count": 3
+        }
+      },
+      {
+        "rule_id": "7f30752f-7ec1-4424-b164-f52a1f8e1004",
+        "title": "Mass File Changes in Short Window",
+        "level": "critical",
+        "description": "Detects bursty file modifications and renames consistent with encryption-for-impact activity.",
+        "tags": [
+          "attack.t1486",
+          "ransomware"
+        ],
+        "evidence": {
+          "file_activity_count": 5,
+          "max_file_events_in_10s": 5,
+          "unique_files_touched": 6
+        }
+      },
+      {
+        "rule_id": "64af0280-f32e-4215-8749-d39151671006",
+        "title": "Suspicious Outbound Connection During File Churn",
+        "level": "medium",
+        "description": "Detects network egress paired with active file churn, which can indicate payload staging or coordination during ransomware execution.",
+        "tags": [
+          "attack.t1105",
+          "ransomware"
+        ],
+        "evidence": {
+          "network_connection_count": 1,
+          "file_activity_count": 5,
+          "burst_activity_score": 5.833
+        }
+      }
+    ],
+    "matched_rule_count": 3,
+    "highest_level": "critical",
+    "attack_tags": [
+      "attack.t1105",
+      "attack.t1486"
+    ]
+  },
+  "risk_assessment": {
+    "scenario_id": "scenario-bundle--malicious-003",
+    "hostname": "design-laptop-03",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "matched_rule_count": 3,
+    "highest_rule_level": "critical",
+    "attack_tags": [
+      "attack.t1105",
+      "attack.t1486"
+    ],
+    "score_breakdown": {
+      "rule_score": 70,
+      "behavior_score": 33,
+      "total_score": 100,
+      "severity": "critical",
+      "confidence": 0.97,
+      "contributing_factors": [
+        {
+          "type": "rule",
+          "name": "Bulk Extension Rename",
+          "weight": 25,
+          "evidence": {
+            "extension_change_count": 3,
+            "file_rename_count": 3
+          }
+        },
+        {
+          "type": "rule",
+          "name": "Mass File Changes in Short Window",
+          "weight": 30,
+          "evidence": {
+            "file_activity_count": 5,
+            "max_file_events_in_10s": 5,
+            "unique_files_touched": 6
+          }
+        },
+        {
+          "type": "rule",
+          "name": "Suspicious Outbound Connection During File Churn",
+          "weight": 15,
+          "evidence": {
+            "network_connection_count": 1,
+            "file_activity_count": 5,
+            "burst_activity_score": 5.833
+          }
+        },
+        {
+          "type": "behavior",
+          "name": "High file activity burst",
+          "weight": 10,
+          "evidence": {
+            "max_file_events_in_10s": 5,
+            "file_activity_count": 5
+          }
+        },
+        {
+          "type": "behavior",
+          "name": "Multiple extension changes",
+          "weight": 10,
+          "evidence": {
+            "extension_change_count": 3
+          }
+        },
+        {
+          "type": "behavior",
+          "name": "Network activity during file churn",
+          "weight": 8,
+          "evidence": {
+            "network_connection_count": 1,
+            "file_activity_count": 5
+          }
+        },
+        {
+          "type": "behavior",
+          "name": "Very high burst activity score",
+          "weight": 5,
+          "evidence": {
+            "burst_activity_score": 5.833
+          }
+        }
+      ]
+    },
+    "recommended_actions": [
+      "Isolate the affected host immediately.",
+      "Preserve volatile evidence and collect forensic artifacts.",
+      "Assess impacted user files and block further write activity if possible.",
+      "Inspect outbound connections for potential command-and-control or staging activity."
+    ]
+  },
+  "mitre_mapping": {
+    "scenario_id": "scenario-bundle--malicious-003",
+    "hostname": "design-laptop-03",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "severity": "critical",
+    "matched_rule_count": 3,
+    "source_attack_tags": [
+      "attack.t1105",
+      "attack.t1486"
+    ],
+    "mapped_techniques": [
+      {
+        "technique_id": "T1105",
+        "technique_name": "Ingress Tool Transfer",
+        "tactics": [
+          "command-and-control"
+        ],
+        "source": "rule_tag",
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1105."
+      },
+      {
+        "technique_id": "T1486",
+        "technique_name": "Data Encrypted for Impact",
+        "tactics": [
+          "impact"
+        ],
+        "source": "rule_tag",
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1486."
+      }
+    ],
+    "unmapped_attack_tags": [],
+    "summary": "Mapped 2 ATT&CK technique(s) for scenario-bundle--malicious-003 at severity critical: T1105, T1486."
+  },
+  "soc_report": {
+    "scenario_id": "scenario-bundle--malicious-003",
+    "scenario_name": "Rapid file encryption simulation",
+    "hostname": "design-laptop-03",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "executive_summary": "Scenario 'Rapid file encryption simulation' is classified as likely ransomware impact activity with critical severity at confidence 0.970. File activity reached 5 total event(s), including 3 rename event(s). ATT&CK coverage includes T1105, T1486.",
+    "incident_classification": "Likely ransomware impact activity",
+    "severity": "critical",
+    "confidence": 0.97,
+    "key_evidence": [
+      "File activity reached 5 total event(s), including 3 rename event(s).",
+      "Detected 3 file extension change event(s), consistent with ransomware impact behavior.",
+      "Observed 1 network connection event(s) during the scenario.",
+      "Triggered 3 detection rule(s), highest rule severity: critical.",
+      "Mapped to ATT&CK technique(s): T1105, T1486."
+    ],
+    "triggered_rules": [
+      {
+        "title": "Bulk Extension Rename",
+        "level": "high",
+        "description": "Detects multiple extension-changing renames, a common impact signal during ransomware encryption.",
+        "evidence": {
+          "extension_change_count": 3,
+          "file_rename_count": 3
+        }
+      },
+      {
+        "title": "Mass File Changes in Short Window",
+        "level": "critical",
+        "description": "Detects bursty file modifications and renames consistent with encryption-for-impact activity.",
+        "evidence": {
+          "file_activity_count": 5,
+          "max_file_events_in_10s": 5,
+          "unique_files_touched": 6
+        }
+      },
+      {
+        "title": "Suspicious Outbound Connection During File Churn",
+        "level": "medium",
+        "description": "Detects network egress paired with active file churn, which can indicate payload staging or coordination during ransomware execution.",
+        "evidence": {
+          "network_connection_count": 1,
+          "file_activity_count": 5,
+          "burst_activity_score": 5.833
+        }
+      }
+    ],
+    "mitre_attack_mapping": [
+      {
+        "technique_id": "T1105",
+        "technique_name": "Ingress Tool Transfer",
+        "tactics": [
+          "command-and-control"
+        ],
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1105."
+      },
+      {
+        "technique_id": "T1486",
+        "technique_name": "Data Encrypted for Impact",
+        "tactics": [
+          "impact"
+        ],
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1486."
+      }
+    ],
+    "recommended_actions": [
+      "Isolate the affected host immediately.",
+      "Preserve volatile evidence and collect forensic artifacts.",
+      "Assess impacted user files and block further write activity if possible.",
+      "Inspect outbound connections for potential command-and-control or staging activity."
+    ],
+    "analyst_notes": [
+      "Objective: Simulate fast encryption-like file churn across multiple directories with a suspicious outbound connection.",
+      "Host profile: design-laptop-03 / Windows 11 / design.",
+      "Dominant activity stage: impact.",
+      "Scoring breakdown: rule=70, behavior=33, total=100.",
+      "Most relevant ATT&CK techniques: T1105, T1486."
+    ]
+  }
+}

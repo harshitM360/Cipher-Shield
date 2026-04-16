@@ -1,0 +1,144 @@
+{
+  "scenario_name": "admin_bulk_rename",
+  "scenario_id": "scenario-bundle--benign-003",
+  "feature_summary": {
+    "scenario_id": "scenario-bundle--benign-003",
+    "hostname": "ops-workstation-01",
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "total_events": 5,
+    "time_span_seconds": 9.0,
+    "process_create_count": 1,
+    "process_terminate_count": 1,
+    "command_exec_count": 0,
+    "network_connection_count": 0,
+    "backup_delete_attempt_count": 0,
+    "file_create_count": 0,
+    "file_modify_count": 0,
+    "file_rename_count": 3,
+    "file_delete_count": 0,
+    "file_activity_count": 3,
+    "unique_process_count": 1,
+    "unique_processes": [
+      "powershell.exe"
+    ],
+    "unique_files_touched": 6,
+    "unique_directories_touched": 1,
+    "sensitive_directory_touch_count": 0,
+    "extension_change_count": 0,
+    "suspicious_parent_child_count": 0,
+    "suspicious_parent_child": false,
+    "suspicious_command_count": 0,
+    "suspicious_command": false,
+    "backup_delete_attempt": false,
+    "max_events_in_10s": 5,
+    "max_file_events_in_10s": 3,
+    "burst_activity_score": 5.556,
+    "stage_counts": {
+      "benign": 5
+    },
+    "event_type_counts": {
+      "process_create": 1,
+      "file_rename": 3,
+      "process_terminate": 1
+    }
+  },
+  "rule_evaluation": {
+    "scenario_id": "scenario-bundle--benign-003",
+    "hostname": "ops-workstation-01",
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "triggered_rules": [],
+    "matched_rule_count": 0,
+    "highest_level": "info",
+    "attack_tags": []
+  },
+  "risk_assessment": {
+    "scenario_id": "scenario-bundle--benign-003",
+    "hostname": "ops-workstation-01",
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "matched_rule_count": 0,
+    "highest_rule_level": "info",
+    "attack_tags": [],
+    "score_breakdown": {
+      "rule_score": 0,
+      "behavior_score": 5,
+      "total_score": 5,
+      "severity": "info",
+      "confidence": 0.185,
+      "contributing_factors": [
+        {
+          "type": "behavior",
+          "name": "Very high burst activity score",
+          "weight": 5,
+          "evidence": {
+            "burst_activity_score": 5.556
+          }
+        }
+      ]
+    },
+    "recommended_actions": [
+      "Continue monitoring; current activity does not justify containment."
+    ]
+  },
+  "mitre_mapping": {
+    "scenario_id": "scenario-bundle--benign-003",
+    "hostname": "ops-workstation-01",
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "severity": "info",
+    "matched_rule_count": 0,
+    "source_attack_tags": [],
+    "mapped_techniques": [],
+    "unmapped_attack_tags": [],
+    "summary": "No ATT&CK techniques were mapped for scenario-bundle--benign-003; current evidence does not indicate a high-confidence adversarial technique."
+  },
+  "soc_report": {
+    "scenario_id": "scenario-bundle--benign-003",
+    "scenario_name": "Admin bulk rename script",
+    "hostname": "ops-workstation-01",
+    "labels": [
+      "synthetic",
+      "benign",
+      "windows-endpoint",
+      "admin-activity"
+    ],
+    "executive_summary": "Scenario 'Admin bulk rename script' is classified as benign administrative or user activity with info severity at confidence 0.185. No high-confidence malicious indicators were observed in the current scenario.",
+    "incident_classification": "Benign administrative or user activity",
+    "severity": "info",
+    "confidence": 0.185,
+    "key_evidence": [
+      "No high-confidence malicious indicators were observed in the current scenario.",
+      "File activity reached 3 total event(s), including 3 rename event(s)."
+    ],
+    "triggered_rules": [],
+    "mitre_attack_mapping": [],
+    "recommended_actions": [
+      "Continue monitoring; current activity does not justify containment."
+    ],
+    "analyst_notes": [
+      "Objective: Simulate a legitimate administrative script renaming archived files in a controlled directory.",
+      "Host profile: ops-workstation-01 / Windows 11 / operations.",
+      "Dominant activity stage: benign.",
+      "Scoring breakdown: rule=0, behavior=5, total=5.",
+      "No ATT&CK techniques were mapped with high confidence."
+    ]
+  }
+}

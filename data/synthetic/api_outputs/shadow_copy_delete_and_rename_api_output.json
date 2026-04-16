@@ -1,0 +1,432 @@
+{
+  "scenario_name": "shadow_copy_delete_and_rename",
+  "scenario_id": "scenario-bundle--malicious-002",
+  "feature_summary": {
+    "scenario_id": "scenario-bundle--malicious-002",
+    "hostname": "finance-laptop-02",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "total_events": 5,
+    "time_span_seconds": 17.0,
+    "process_create_count": 1,
+    "process_terminate_count": 0,
+    "command_exec_count": 0,
+    "network_connection_count": 0,
+    "backup_delete_attempt_count": 1,
+    "file_create_count": 0,
+    "file_modify_count": 1,
+    "file_rename_count": 2,
+    "file_delete_count": 0,
+    "file_activity_count": 3,
+    "unique_process_count": 3,
+    "unique_processes": [
+      "evil_encryptor.exe",
+      "powershell.exe",
+      "vssadmin.exe"
+    ],
+    "unique_files_touched": 4,
+    "unique_directories_touched": 1,
+    "sensitive_directory_touch_count": 0,
+    "extension_change_count": 2,
+    "suspicious_parent_child_count": 1,
+    "suspicious_parent_child": true,
+    "suspicious_command_count": 1,
+    "suspicious_command": true,
+    "backup_delete_attempt": true,
+    "max_events_in_10s": 3,
+    "max_file_events_in_10s": 3,
+    "burst_activity_score": 2.941,
+    "stage_counts": {
+      "pre-impact": 2,
+      "impact": 3
+    },
+    "event_type_counts": {
+      "process_create": 1,
+      "backup_delete_attempt": 1,
+      "file_modify": 1,
+      "file_rename": 2
+    }
+  },
+  "rule_evaluation": {
+    "scenario_id": "scenario-bundle--malicious-002",
+    "hostname": "finance-laptop-02",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "triggered_rules": [
+      {
+        "rule_id": "929a690e-bef0-4204-a928-ef5e620d6fcc",
+        "title": "Suspicious Shadow Copy Deletion",
+        "level": "critical",
+        "description": "Detects commands commonly used to delete Windows shadow copies before ransomware encryption.",
+        "tags": [
+          "attack.t1490",
+          "ransomware"
+        ],
+        "evidence": {
+          "backup_delete_attempt_count": 1,
+          "event_type_counts": {
+            "process_create": 1,
+            "backup_delete_attempt": 1,
+            "file_modify": 1,
+            "file_rename": 2
+          }
+        }
+      },
+      {
+        "rule_id": "16b45b3b-4e0a-493f-8b1e-d60efa1d1002",
+        "title": "Suspicious Command Execution",
+        "level": "high",
+        "description": "Detects high-risk scripting or download command patterns associated with initial execution and staging.",
+        "tags": [
+          "attack.t1059.001",
+          "ransomware"
+        ],
+        "evidence": {
+          "suspicious_command_count": 1,
+          "command_exec_count": 0
+        }
+      },
+      {
+        "rule_id": "2ab0d7c4-c52d-4de2-9ad7-b6bc0d2f1001",
+        "title": "Suspicious Parent-Child Process Chain",
+        "level": "high",
+        "description": "Detects office or user-facing applications launching command interpreters or scripting engines often used in ransomware delivery.",
+        "tags": [
+          "attack.t1059",
+          "attack.t1204",
+          "ransomware"
+        ],
+        "evidence": {
+          "suspicious_parent_child_count": 1,
+          "unique_processes": [
+            "evil_encryptor.exe",
+            "powershell.exe",
+            "vssadmin.exe"
+          ]
+        }
+      }
+    ],
+    "matched_rule_count": 3,
+    "highest_level": "critical",
+    "attack_tags": [
+      "attack.t1059",
+      "attack.t1059.001",
+      "attack.t1204",
+      "attack.t1490"
+    ]
+  },
+  "risk_assessment": {
+    "scenario_id": "scenario-bundle--malicious-002",
+    "hostname": "finance-laptop-02",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "matched_rule_count": 3,
+    "highest_rule_level": "critical",
+    "attack_tags": [
+      "attack.t1059",
+      "attack.t1059.001",
+      "attack.t1204",
+      "attack.t1490"
+    ],
+    "score_breakdown": {
+      "rule_score": 76,
+      "behavior_score": 46,
+      "total_score": 100,
+      "severity": "critical",
+      "confidence": 0.97,
+      "contributing_factors": [
+        {
+          "type": "rule",
+          "name": "Suspicious Shadow Copy Deletion",
+          "weight": 40,
+          "evidence": {
+            "backup_delete_attempt_count": 1,
+            "event_type_counts": {
+              "process_create": 1,
+              "backup_delete_attempt": 1,
+              "file_modify": 1,
+              "file_rename": 2
+            }
+          }
+        },
+        {
+          "type": "rule",
+          "name": "Suspicious Command Execution",
+          "weight": 18,
+          "evidence": {
+            "suspicious_command_count": 1,
+            "command_exec_count": 0
+          }
+        },
+        {
+          "type": "rule",
+          "name": "Suspicious Parent-Child Process Chain",
+          "weight": 18,
+          "evidence": {
+            "suspicious_parent_child_count": 1,
+            "unique_processes": [
+              "evil_encryptor.exe",
+              "powershell.exe",
+              "vssadmin.exe"
+            ]
+          }
+        },
+        {
+          "type": "behavior",
+          "name": "Backup deletion attempt present",
+          "weight": 10,
+          "evidence": {
+            "backup_delete_attempt_count": 1
+          }
+        },
+        {
+          "type": "behavior",
+          "name": "Suspicious parent-child process chain",
+          "weight": 8,
+          "evidence": {
+            "suspicious_parent_child_count": 1
+          }
+        },
+        {
+          "type": "behavior",
+          "name": "Suspicious command usage",
+          "weight": 8,
+          "evidence": {
+            "suspicious_command_count": 1
+          }
+        },
+        {
+          "type": "behavior",
+          "name": "Office application spawned suspicious scripting activity",
+          "weight": 10,
+          "evidence": {
+            "suspicious_parent_child_count": 1,
+            "suspicious_command_count": 1
+          }
+        },
+        {
+          "type": "behavior",
+          "name": "Multiple extension changes",
+          "weight": 10,
+          "evidence": {
+            "extension_change_count": 2
+          }
+        }
+      ]
+    },
+    "recommended_actions": [
+      "Isolate the affected host immediately.",
+      "Preserve volatile evidence and collect forensic artifacts.",
+      "Protect recovery infrastructure and verify shadow copy availability.",
+      "Review the suspicious process tree and terminate malicious processes if confirmed.",
+      "Assess impacted user files and block further write activity if possible."
+    ]
+  },
+  "mitre_mapping": {
+    "scenario_id": "scenario-bundle--malicious-002",
+    "hostname": "finance-laptop-02",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "severity": "critical",
+    "matched_rule_count": 3,
+    "source_attack_tags": [
+      "attack.t1059",
+      "attack.t1059.001",
+      "attack.t1204",
+      "attack.t1490"
+    ],
+    "mapped_techniques": [
+      {
+        "technique_id": "T1059",
+        "technique_name": "Command and Scripting Interpreter",
+        "tactics": [
+          "execution"
+        ],
+        "source": "rule_tag",
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1059."
+      },
+      {
+        "technique_id": "T1059.001",
+        "technique_name": "PowerShell",
+        "tactics": [
+          "execution"
+        ],
+        "source": "rule_tag",
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1059.001."
+      },
+      {
+        "technique_id": "T1204",
+        "technique_name": "User Execution",
+        "tactics": [
+          "execution"
+        ],
+        "source": "rule_tag",
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1204."
+      },
+      {
+        "technique_id": "T1486",
+        "technique_name": "Data Encrypted for Impact",
+        "tactics": [
+          "impact"
+        ],
+        "source": "behavior_inference",
+        "confidence": 0.88,
+        "rationale": "Inferred from ransomware-like file churn or extension changes consistent with encryption impact."
+      },
+      {
+        "technique_id": "T1490",
+        "technique_name": "Inhibit System Recovery",
+        "tactics": [
+          "impact"
+        ],
+        "source": "rule_tag",
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1490."
+      }
+    ],
+    "unmapped_attack_tags": [],
+    "summary": "Mapped 5 ATT&CK technique(s) for scenario-bundle--malicious-002 at severity critical: T1059, T1059.001, T1204, T1486, T1490."
+  },
+  "soc_report": {
+    "scenario_id": "scenario-bundle--malicious-002",
+    "scenario_name": "Shadow copy deletion and mass rename",
+    "hostname": "finance-laptop-02",
+    "labels": [
+      "synthetic",
+      "malicious",
+      "ransomware",
+      "windows-endpoint"
+    ],
+    "executive_summary": "Scenario 'Shadow copy deletion and mass rename' is classified as likely ransomware impact activity with critical severity at confidence 0.970. Observed 1 suspicious parent-child process chain event(s). ATT&CK coverage includes T1059, T1059.001, T1204, T1486, T1490.",
+    "incident_classification": "Likely ransomware impact activity",
+    "severity": "critical",
+    "confidence": 0.97,
+    "key_evidence": [
+      "Observed 1 suspicious parent-child process chain event(s).",
+      "Observed 1 suspicious command execution indicator(s).",
+      "Detected 1 recovery or shadow-copy deletion attempt(s).",
+      "File activity reached 3 total event(s), including 2 rename event(s).",
+      "Detected 2 file extension change event(s), consistent with ransomware impact behavior.",
+      "Triggered 3 detection rule(s), highest rule severity: critical.",
+      "Mapped to ATT&CK technique(s): T1059, T1059.001, T1204, T1486, T1490."
+    ],
+    "triggered_rules": [
+      {
+        "title": "Suspicious Shadow Copy Deletion",
+        "level": "critical",
+        "description": "Detects commands commonly used to delete Windows shadow copies before ransomware encryption.",
+        "evidence": {
+          "backup_delete_attempt_count": 1,
+          "event_type_counts": {
+            "process_create": 1,
+            "backup_delete_attempt": 1,
+            "file_modify": 1,
+            "file_rename": 2
+          }
+        }
+      },
+      {
+        "title": "Suspicious Command Execution",
+        "level": "high",
+        "description": "Detects high-risk scripting or download command patterns associated with initial execution and staging.",
+        "evidence": {
+          "suspicious_command_count": 1,
+          "command_exec_count": 0
+        }
+      },
+      {
+        "title": "Suspicious Parent-Child Process Chain",
+        "level": "high",
+        "description": "Detects office or user-facing applications launching command interpreters or scripting engines often used in ransomware delivery.",
+        "evidence": {
+          "suspicious_parent_child_count": 1,
+          "unique_processes": [
+            "evil_encryptor.exe",
+            "powershell.exe",
+            "vssadmin.exe"
+          ]
+        }
+      }
+    ],
+    "mitre_attack_mapping": [
+      {
+        "technique_id": "T1059",
+        "technique_name": "Command and Scripting Interpreter",
+        "tactics": [
+          "execution"
+        ],
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1059."
+      },
+      {
+        "technique_id": "T1059.001",
+        "technique_name": "PowerShell",
+        "tactics": [
+          "execution"
+        ],
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1059.001."
+      },
+      {
+        "technique_id": "T1204",
+        "technique_name": "User Execution",
+        "tactics": [
+          "execution"
+        ],
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1204."
+      },
+      {
+        "technique_id": "T1486",
+        "technique_name": "Data Encrypted for Impact",
+        "tactics": [
+          "impact"
+        ],
+        "confidence": 0.88,
+        "rationale": "Inferred from ransomware-like file churn or extension changes consistent with encryption impact."
+      },
+      {
+        "technique_id": "T1490",
+        "technique_name": "Inhibit System Recovery",
+        "tactics": [
+          "impact"
+        ],
+        "confidence": 0.95,
+        "rationale": "Mapped directly from triggered rule tag attack.t1490."
+      }
+    ],
+    "recommended_actions": [
+      "Isolate the affected host immediately.",
+      "Preserve volatile evidence and collect forensic artifacts.",
+      "Protect recovery infrastructure and verify shadow copy availability.",
+      "Review the suspicious process tree and terminate malicious processes if confirmed.",
+      "Assess impacted user files and block further write activity if possible."
+    ],
+    "analyst_notes": [
+      "Objective: Simulate ransomware deleting recovery artifacts and renaming user files with a locked extension.",
+      "Host profile: finance-laptop-02 / Windows 11 / finance.",
+      "Dominant activity stage: impact.",
+      "Scoring breakdown: rule=76, behavior=46, total=100.",
+      "Most relevant ATT&CK techniques: T1059, T1059.001, T1204, T1486, T1490."
+    ]
+  }
+}
