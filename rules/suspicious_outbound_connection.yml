@@ -1,0 +1,19 @@
+title: Suspicious Outbound Connection During File Churn
+id: 64af0280-f32e-4215-8749-d39151671006
+status: experimental
+description: Detects network egress paired with active file churn, which can indicate payload staging or coordination during ransomware execution.
+logsource:
+  product: windows
+  category: network_connection
+
+detection:
+  feature:
+    network_connection_threshold: 1
+    file_activity_threshold: 3
+  condition: feature
+
+level: medium
+
+tags:
+  - attack.t1105
+  - ransomware

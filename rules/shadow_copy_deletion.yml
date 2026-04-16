@@ -1,0 +1,18 @@
+title: Suspicious Shadow Copy Deletion
+id: 929a690e-bef0-4204-a928-ef5e620d6fcc
+status: experimental
+description: Detects commands commonly used to delete Windows shadow copies before ransomware encryption.
+logsource:
+  product: windows
+  category: process_creation
+
+detection:
+  feature:
+    backup_delete_attempt: true
+  condition: feature
+
+level: critical
+
+tags:
+  - attack.t1490
+  - ransomware

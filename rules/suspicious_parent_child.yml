@@ -1,0 +1,19 @@
+title: Suspicious Parent-Child Process Chain
+id: 2ab0d7c4-c52d-4de2-9ad7-b6bc0d2f1001
+status: experimental
+description: Detects office or user-facing applications launching command interpreters or scripting engines often used in ransomware delivery.
+logsource:
+  product: windows
+  category: process_creation
+
+detection:
+  feature:
+    suspicious_parent_child: true
+  condition: feature
+
+level: high
+
+tags:
+  - attack.t1059
+  - attack.t1204
+  - ransomware

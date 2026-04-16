@@ -1,0 +1,18 @@
+title: Bulk Extension Rename
+id: b6fc5f4d-79fb-49eb-92b2-a5dd47751005
+status: experimental
+description: Detects multiple extension-changing renames, a common impact signal during ransomware encryption.
+logsource:
+  product: windows
+  category: file_event
+
+detection:
+  feature:
+    extension_change_threshold: 3
+  condition: feature
+
+level: high
+
+tags:
+  - attack.t1486
+  - ransomware

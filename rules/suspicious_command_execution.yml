@@ -1,0 +1,18 @@
+title: Suspicious Command Execution
+id: 16b45b3b-4e0a-493f-8b1e-d60efa1d1002
+status: experimental
+description: Detects high-risk scripting or download command patterns associated with initial execution and staging.
+logsource:
+  product: windows
+  category: process_creation
+
+detection:
+  feature:
+    suspicious_command: true
+  condition: feature
+
+level: high
+
+tags:
+  - attack.t1059.001
+  - ransomware

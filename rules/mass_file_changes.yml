@@ -1,0 +1,19 @@
+title: Mass File Changes in Short Window
+id: 7f30752f-7ec1-4424-b164-f52a1f8e1004
+status: experimental
+description: Detects bursty file modifications and renames consistent with encryption-for-impact activity.
+logsource:
+  product: windows
+  category: file_event
+
+detection:
+  feature:
+    file_activity_threshold: 5
+    burst_file_threshold: 5
+  condition: feature
+
+level: critical
+
+tags:
+  - attack.t1486
+  - ransomware
