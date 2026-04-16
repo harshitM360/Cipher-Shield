@@ -1,0 +1,31 @@
+{
+  "scenario_id": "scenario-bundle--benign-003",
+  "scenario_name": "Admin bulk rename script",
+  "hostname": "ops-workstation-01",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint",
+    "admin-activity"
+  ],
+  "executive_summary": "Scenario 'Admin bulk rename script' is classified as benign administrative or user activity with info severity at confidence 0.185. No high-confidence malicious indicators were observed in the current scenario.",
+  "incident_classification": "Benign administrative or user activity",
+  "severity": "info",
+  "confidence": 0.185,
+  "key_evidence": [
+    "No high-confidence malicious indicators were observed in the current scenario.",
+    "File activity reached 3 total event(s), including 3 rename event(s)."
+  ],
+  "triggered_rules": [],
+  "mitre_attack_mapping": [],
+  "recommended_actions": [
+    "Continue monitoring; current activity does not justify containment."
+  ],
+  "analyst_notes": [
+    "Objective: Simulate a legitimate administrative script renaming archived files in a controlled directory.",
+    "Host profile: ops-workstation-01 / Windows 11 / operations.",
+    "Dominant activity stage: benign.",
+    "Scoring breakdown: rule=0, behavior=5, total=5.",
+    "No ATT&CK techniques were mapped with high confidence."
+  ]
+}

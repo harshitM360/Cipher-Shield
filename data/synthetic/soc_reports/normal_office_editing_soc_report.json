@@ -1,0 +1,30 @@
+{
+  "scenario_id": "scenario-bundle--benign-001",
+  "scenario_name": "Normal office editing workflow",
+  "hostname": "hr-laptop-01",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint"
+  ],
+  "executive_summary": "Scenario 'Normal office editing workflow' is classified as benign administrative or user activity with info severity at confidence 0.150. No high-confidence malicious indicators were observed in the current scenario.",
+  "incident_classification": "Benign administrative or user activity",
+  "severity": "info",
+  "confidence": 0.15,
+  "key_evidence": [
+    "No high-confidence malicious indicators were observed in the current scenario.",
+    "File activity reached 3 total event(s), including 0 rename event(s)."
+  ],
+  "triggered_rules": [],
+  "mitre_attack_mapping": [],
+  "recommended_actions": [
+    "Continue monitoring; current activity does not justify containment."
+  ],
+  "analyst_notes": [
+    "Objective: Simulate routine document editing and saving activity on a Windows office laptop.",
+    "Host profile: hr-laptop-01 / Windows 11 / hr.",
+    "Dominant activity stage: benign.",
+    "Scoring breakdown: rule=0, behavior=0, total=0.",
+    "No ATT&CK techniques were mapped with high confidence."
+  ]
+}

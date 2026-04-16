@@ -1,0 +1,85 @@
+{
+  "scenario_id": "scenario-bundle--malicious-001",
+  "scenario_name": "Word spawns PowerShell",
+  "hostname": "finance-laptop-01",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "executive_summary": "Scenario 'Word spawns PowerShell' is classified as suspicious pre-impact execution activity with high severity at confidence 0.664. Observed 2 suspicious parent-child process chain event(s). ATT&CK coverage includes T1059, T1059.001, T1204.",
+  "incident_classification": "Suspicious pre-impact execution activity",
+  "severity": "high",
+  "confidence": 0.664,
+  "key_evidence": [
+    "Observed 2 suspicious parent-child process chain event(s).",
+    "Observed 2 suspicious command execution indicator(s).",
+    "Triggered 2 detection rule(s), highest rule severity: high.",
+    "Mapped to ATT&CK technique(s): T1059, T1059.001, T1204."
+  ],
+  "triggered_rules": [
+    {
+      "title": "Suspicious Command Execution",
+      "level": "high",
+      "description": "Detects high-risk scripting or download command patterns associated with initial execution and staging.",
+      "evidence": {
+        "suspicious_command_count": 2,
+        "command_exec_count": 1
+      }
+    },
+    {
+      "title": "Suspicious Parent-Child Process Chain",
+      "level": "high",
+      "description": "Detects office or user-facing applications launching command interpreters or scripting engines often used in ransomware delivery.",
+      "evidence": {
+        "suspicious_parent_child_count": 2,
+        "unique_processes": [
+          "powershell.exe",
+          "winword.exe"
+        ]
+      }
+    }
+  ],
+  "mitre_attack_mapping": [
+    {
+      "technique_id": "T1059",
+      "technique_name": "Command and Scripting Interpreter",
+      "tactics": [
+        "execution"
+      ],
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1059."
+    },
+    {
+      "technique_id": "T1059.001",
+      "technique_name": "PowerShell",
+      "tactics": [
+        "execution"
+      ],
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1059.001."
+    },
+    {
+      "technique_id": "T1204",
+      "technique_name": "User Execution",
+      "tactics": [
+        "execution"
+      ],
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1204."
+    }
+  ],
+  "recommended_actions": [
+    "Isolate the affected host immediately.",
+    "Preserve volatile evidence and collect forensic artifacts.",
+    "Review the suspicious process tree and terminate malicious processes if confirmed."
+  ],
+  "analyst_notes": [
+    "Objective: Simulate an initial malicious office document that launches PowerShell before encryption begins.",
+    "Host profile: finance-laptop-01 / Windows 11 / finance.",
+    "Dominant activity stage: pre-impact.",
+    "Scoring breakdown: rule=36, behavior=26, total=62.",
+    "Most relevant ATT&CK techniques: T1059, T1059.001, T1204."
+  ]
+}

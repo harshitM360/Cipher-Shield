@@ -1,0 +1,31 @@
+{
+  "scenario_id": "scenario-bundle--benign-002",
+  "scenario_name": "Software update activity",
+  "hostname": "eng-laptop-02",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint",
+    "software-update"
+  ],
+  "executive_summary": "Scenario 'Software update activity' is classified as benign administrative or user activity with info severity at confidence 0.150. No high-confidence malicious indicators were observed in the current scenario.",
+  "incident_classification": "Benign administrative or user activity",
+  "severity": "info",
+  "confidence": 0.15,
+  "key_evidence": [
+    "No high-confidence malicious indicators were observed in the current scenario.",
+    "File activity reached 3 total event(s), including 0 rename event(s)."
+  ],
+  "triggered_rules": [],
+  "mitre_attack_mapping": [],
+  "recommended_actions": [
+    "Continue monitoring; current activity does not justify containment."
+  ],
+  "analyst_notes": [
+    "Objective: Simulate an approved updater replacing application binaries and writing installer logs.",
+    "Host profile: eng-laptop-02 / Windows 11 / engineering.",
+    "Dominant activity stage: benign.",
+    "Scoring breakdown: rule=0, behavior=0, total=0.",
+    "No ATT&CK techniques were mapped with high confidence."
+  ]
+}

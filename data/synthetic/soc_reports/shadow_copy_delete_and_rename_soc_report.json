@@ -1,0 +1,123 @@
+{
+  "scenario_id": "scenario-bundle--malicious-002",
+  "scenario_name": "Shadow copy deletion and mass rename",
+  "hostname": "finance-laptop-02",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "executive_summary": "Scenario 'Shadow copy deletion and mass rename' is classified as likely ransomware impact activity with critical severity at confidence 0.970. Observed 1 suspicious parent-child process chain event(s). ATT&CK coverage includes T1059, T1059.001, T1204, T1486, T1490.",
+  "incident_classification": "Likely ransomware impact activity",
+  "severity": "critical",
+  "confidence": 0.97,
+  "key_evidence": [
+    "Observed 1 suspicious parent-child process chain event(s).",
+    "Observed 1 suspicious command execution indicator(s).",
+    "Detected 1 recovery or shadow-copy deletion attempt(s).",
+    "File activity reached 3 total event(s), including 2 rename event(s).",
+    "Detected 2 file extension change event(s), consistent with ransomware impact behavior.",
+    "Triggered 3 detection rule(s), highest rule severity: critical.",
+    "Mapped to ATT&CK technique(s): T1059, T1059.001, T1204, T1486, T1490."
+  ],
+  "triggered_rules": [
+    {
+      "title": "Suspicious Shadow Copy Deletion",
+      "level": "critical",
+      "description": "Detects commands commonly used to delete Windows shadow copies before ransomware encryption.",
+      "evidence": {
+        "backup_delete_attempt_count": 1,
+        "event_type_counts": {
+          "process_create": 1,
+          "backup_delete_attempt": 1,
+          "file_modify": 1,
+          "file_rename": 2
+        }
+      }
+    },
+    {
+      "title": "Suspicious Command Execution",
+      "level": "high",
+      "description": "Detects high-risk scripting or download command patterns associated with initial execution and staging.",
+      "evidence": {
+        "suspicious_command_count": 1,
+        "command_exec_count": 0
+      }
+    },
+    {
+      "title": "Suspicious Parent-Child Process Chain",
+      "level": "high",
+      "description": "Detects office or user-facing applications launching command interpreters or scripting engines often used in ransomware delivery.",
+      "evidence": {
+        "suspicious_parent_child_count": 1,
+        "unique_processes": [
+          "evil_encryptor.exe",
+          "powershell.exe",
+          "vssadmin.exe"
+        ]
+      }
+    }
+  ],
+  "mitre_attack_mapping": [
+    {
+      "technique_id": "T1059",
+      "technique_name": "Command and Scripting Interpreter",
+      "tactics": [
+        "execution"
+      ],
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1059."
+    },
+    {
+      "technique_id": "T1059.001",
+      "technique_name": "PowerShell",
+      "tactics": [
+        "execution"
+      ],
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1059.001."
+    },
+    {
+      "technique_id": "T1204",
+      "technique_name": "User Execution",
+      "tactics": [
+        "execution"
+      ],
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1204."
+    },
+    {
+      "technique_id": "T1486",
+      "technique_name": "Data Encrypted for Impact",
+      "tactics": [
+        "impact"
+      ],
+      "confidence": 0.88,
+      "rationale": "Inferred from ransomware-like file churn or extension changes consistent with encryption impact."
+    },
+    {
+      "technique_id": "T1490",
+      "technique_name": "Inhibit System Recovery",
+      "tactics": [
+        "impact"
+      ],
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1490."
+    }
+  ],
+  "recommended_actions": [
+    "Isolate the affected host immediately.",
+    "Preserve volatile evidence and collect forensic artifacts.",
+    "Protect recovery infrastructure and verify shadow copy availability.",
+    "Review the suspicious process tree and terminate malicious processes if confirmed.",
+    "Assess impacted user files and block further write activity if possible."
+  ],
+  "analyst_notes": [
+    "Objective: Simulate ransomware deleting recovery artifacts and renaming user files with a locked extension.",
+    "Host profile: finance-laptop-02 / Windows 11 / finance.",
+    "Dominant activity stage: impact.",
+    "Scoring breakdown: rule=76, behavior=46, total=100.",
+    "Most relevant ATT&CK techniques: T1059, T1059.001, T1204, T1486, T1490."
+  ]
+}
