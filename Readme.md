@@ -1,4 +1,4 @@
-# AI-Powered Explainable SOC Copilot for Ransomware Detection
+# Cipher-Shield
 
 An offline, Windows endpoint-focused prototype that detects ransomware-like behavior from synthetic but production-style telemetry, maps the activity to MITRE ATT&CK, and generates analyst-style SOC reports.
 
