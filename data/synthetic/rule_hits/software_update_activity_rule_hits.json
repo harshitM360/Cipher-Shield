@@ -1,0 +1,14 @@
+{
+  "scenario_id": "scenario-bundle--benign-002",
+  "hostname": "eng-laptop-02",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint",
+    "software-update"
+  ],
+  "triggered_rules": [],
+  "matched_rule_count": 0,
+  "highest_level": "info",
+  "attack_tags": []
+}

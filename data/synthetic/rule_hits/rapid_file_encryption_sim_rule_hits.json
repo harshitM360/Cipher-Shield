@@ -1,0 +1,62 @@
+{
+  "scenario_id": "scenario-bundle--malicious-003",
+  "hostname": "design-laptop-03",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "triggered_rules": [
+    {
+      "rule_id": "b6fc5f4d-79fb-49eb-92b2-a5dd47751005",
+      "title": "Bulk Extension Rename",
+      "level": "high",
+      "description": "Detects multiple extension-changing renames, a common impact signal during ransomware encryption.",
+      "tags": [
+        "attack.t1486",
+        "ransomware"
+      ],
+      "evidence": {
+        "extension_change_count": 3,
+        "file_rename_count": 3
+      }
+    },
+    {
+      "rule_id": "7f30752f-7ec1-4424-b164-f52a1f8e1004",
+      "title": "Mass File Changes in Short Window",
+      "level": "critical",
+      "description": "Detects bursty file modifications and renames consistent with encryption-for-impact activity.",
+      "tags": [
+        "attack.t1486",
+        "ransomware"
+      ],
+      "evidence": {
+        "file_activity_count": 5,
+        "max_file_events_in_10s": 5,
+        "unique_files_touched": 6
+      }
+    },
+    {
+      "rule_id": "64af0280-f32e-4215-8749-d39151671006",
+      "title": "Suspicious Outbound Connection During File Churn",
+      "level": "medium",
+      "description": "Detects network egress paired with active file churn, which can indicate payload staging or coordination during ransomware execution.",
+      "tags": [
+        "attack.t1105",
+        "ransomware"
+      ],
+      "evidence": {
+        "network_connection_count": 1,
+        "file_activity_count": 5,
+        "burst_activity_score": 5.833
+      }
+    }
+  ],
+  "matched_rule_count": 3,
+  "highest_level": "critical",
+  "attack_tags": [
+    "attack.t1105",
+    "attack.t1486"
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "scenario_id": "scenario-bundle--malicious-001",
+  "hostname": "finance-laptop-01",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "triggered_rules": [
+    {
+      "rule_id": "16b45b3b-4e0a-493f-8b1e-d60efa1d1002",
+      "title": "Suspicious Command Execution",
+      "level": "high",
+      "description": "Detects high-risk scripting or download command patterns associated with initial execution and staging.",
+      "tags": [
+        "attack.t1059.001",
+        "ransomware"
+      ],
+      "evidence": {
+        "suspicious_command_count": 2,
+        "command_exec_count": 1
+      }
+    },
+    {
+      "rule_id": "2ab0d7c4-c52d-4de2-9ad7-b6bc0d2f1001",
+      "title": "Suspicious Parent-Child Process Chain",
+      "level": "high",
+      "description": "Detects office or user-facing applications launching command interpreters or scripting engines often used in ransomware delivery.",
+      "tags": [
+        "attack.t1059",
+        "attack.t1204",
+        "ransomware"
+      ],
+      "evidence": {
+        "suspicious_parent_child_count": 2,
+        "unique_processes": [
+          "powershell.exe",
+          "winword.exe"
+        ]
+      }
+    }
+  ],
+  "matched_rule_count": 2,
+  "highest_level": "high",
+  "attack_tags": [
+    "attack.t1059",
+    "attack.t1059.001",
+    "attack.t1204"
+  ]
+}

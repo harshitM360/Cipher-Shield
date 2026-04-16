@@ -1,0 +1,14 @@
+{
+  "scenario_id": "scenario-bundle--benign-003",
+  "hostname": "ops-workstation-01",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint",
+    "admin-activity"
+  ],
+  "triggered_rules": [],
+  "matched_rule_count": 0,
+  "highest_level": "info",
+  "attack_tags": []
+}

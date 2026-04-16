@@ -1,0 +1,72 @@
+{
+  "scenario_id": "scenario-bundle--malicious-002",
+  "hostname": "finance-laptop-02",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "triggered_rules": [
+    {
+      "rule_id": "929a690e-bef0-4204-a928-ef5e620d6fcc",
+      "title": "Suspicious Shadow Copy Deletion",
+      "level": "critical",
+      "description": "Detects commands commonly used to delete Windows shadow copies before ransomware encryption.",
+      "tags": [
+        "attack.t1490",
+        "ransomware"
+      ],
+      "evidence": {
+        "backup_delete_attempt_count": 1,
+        "event_type_counts": {
+          "process_create": 1,
+          "backup_delete_attempt": 1,
+          "file_modify": 1,
+          "file_rename": 2
+        }
+      }
+    },
+    {
+      "rule_id": "16b45b3b-4e0a-493f-8b1e-d60efa1d1002",
+      "title": "Suspicious Command Execution",
+      "level": "high",
+      "description": "Detects high-risk scripting or download command patterns associated with initial execution and staging.",
+      "tags": [
+        "attack.t1059.001",
+        "ransomware"
+      ],
+      "evidence": {
+        "suspicious_command_count": 1,
+        "command_exec_count": 0
+      }
+    },
+    {
+      "rule_id": "2ab0d7c4-c52d-4de2-9ad7-b6bc0d2f1001",
+      "title": "Suspicious Parent-Child Process Chain",
+      "level": "high",
+      "description": "Detects office or user-facing applications launching command interpreters or scripting engines often used in ransomware delivery.",
+      "tags": [
+        "attack.t1059",
+        "attack.t1204",
+        "ransomware"
+      ],
+      "evidence": {
+        "suspicious_parent_child_count": 1,
+        "unique_processes": [
+          "evil_encryptor.exe",
+          "powershell.exe",
+          "vssadmin.exe"
+        ]
+      }
+    }
+  ],
+  "matched_rule_count": 3,
+  "highest_level": "critical",
+  "attack_tags": [
+    "attack.t1059",
+    "attack.t1059.001",
+    "attack.t1204",
+    "attack.t1490"
+  ]
+}

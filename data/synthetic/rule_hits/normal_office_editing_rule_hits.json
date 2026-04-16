@@ -1,0 +1,13 @@
+{
+  "scenario_id": "scenario-bundle--benign-001",
+  "hostname": "hr-laptop-01",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint"
+  ],
+  "triggered_rules": [],
+  "matched_rule_count": 0,
+  "highest_level": "info",
+  "attack_tags": []
+}
