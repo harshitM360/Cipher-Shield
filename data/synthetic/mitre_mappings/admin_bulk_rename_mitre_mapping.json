@@ -1,0 +1,16 @@
+{
+  "scenario_id": "scenario-bundle--benign-003",
+  "hostname": "ops-workstation-01",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint",
+    "admin-activity"
+  ],
+  "severity": "info",
+  "matched_rule_count": 0,
+  "source_attack_tags": [],
+  "mapped_techniques": [],
+  "unmapped_attack_tags": [],
+  "summary": "No ATT&CK techniques were mapped for scenario-bundle--benign-003; current evidence does not indicate a high-confidence adversarial technique."
+}

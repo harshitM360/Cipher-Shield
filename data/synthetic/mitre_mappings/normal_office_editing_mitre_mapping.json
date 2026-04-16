@@ -1,0 +1,15 @@
+{
+  "scenario_id": "scenario-bundle--benign-001",
+  "hostname": "hr-laptop-01",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint"
+  ],
+  "severity": "info",
+  "matched_rule_count": 0,
+  "source_attack_tags": [],
+  "mapped_techniques": [],
+  "unmapped_attack_tags": [],
+  "summary": "No ATT&CK techniques were mapped for scenario-bundle--benign-001; current evidence does not indicate a high-confidence adversarial technique."
+}

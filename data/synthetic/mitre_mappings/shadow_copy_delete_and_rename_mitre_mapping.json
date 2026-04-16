@@ -1,0 +1,72 @@
+{
+  "scenario_id": "scenario-bundle--malicious-002",
+  "hostname": "finance-laptop-02",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "severity": "critical",
+  "matched_rule_count": 3,
+  "source_attack_tags": [
+    "attack.t1059",
+    "attack.t1059.001",
+    "attack.t1204",
+    "attack.t1490"
+  ],
+  "mapped_techniques": [
+    {
+      "technique_id": "T1059",
+      "technique_name": "Command and Scripting Interpreter",
+      "tactics": [
+        "execution"
+      ],
+      "source": "rule_tag",
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1059."
+    },
+    {
+      "technique_id": "T1059.001",
+      "technique_name": "PowerShell",
+      "tactics": [
+        "execution"
+      ],
+      "source": "rule_tag",
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1059.001."
+    },
+    {
+      "technique_id": "T1204",
+      "technique_name": "User Execution",
+      "tactics": [
+        "execution"
+      ],
+      "source": "rule_tag",
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1204."
+    },
+    {
+      "technique_id": "T1486",
+      "technique_name": "Data Encrypted for Impact",
+      "tactics": [
+        "impact"
+      ],
+      "source": "behavior_inference",
+      "confidence": 0.88,
+      "rationale": "Inferred from ransomware-like file churn or extension changes consistent with encryption impact."
+    },
+    {
+      "technique_id": "T1490",
+      "technique_name": "Inhibit System Recovery",
+      "tactics": [
+        "impact"
+      ],
+      "source": "rule_tag",
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1490."
+    }
+  ],
+  "unmapped_attack_tags": [],
+  "summary": "Mapped 5 ATT&CK technique(s) for scenario-bundle--malicious-002 at severity critical: T1059, T1059.001, T1204, T1486, T1490."
+}

@@ -1,0 +1,40 @@
+{
+  "scenario_id": "scenario-bundle--malicious-003",
+  "hostname": "design-laptop-03",
+  "labels": [
+    "synthetic",
+    "malicious",
+    "ransomware",
+    "windows-endpoint"
+  ],
+  "severity": "critical",
+  "matched_rule_count": 3,
+  "source_attack_tags": [
+    "attack.t1105",
+    "attack.t1486"
+  ],
+  "mapped_techniques": [
+    {
+      "technique_id": "T1105",
+      "technique_name": "Ingress Tool Transfer",
+      "tactics": [
+        "command-and-control"
+      ],
+      "source": "rule_tag",
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1105."
+    },
+    {
+      "technique_id": "T1486",
+      "technique_name": "Data Encrypted for Impact",
+      "tactics": [
+        "impact"
+      ],
+      "source": "rule_tag",
+      "confidence": 0.95,
+      "rationale": "Mapped directly from triggered rule tag attack.t1486."
+    }
+  ],
+  "unmapped_attack_tags": [],
+  "summary": "Mapped 2 ATT&CK technique(s) for scenario-bundle--malicious-003 at severity critical: T1105, T1486."
+}
