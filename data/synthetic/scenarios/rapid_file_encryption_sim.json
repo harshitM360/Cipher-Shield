@@ -1,0 +1,86 @@
+{
+  "type": "scenario-bundle",
+  "id": "scenario-bundle--malicious-003",
+  "spec_version": "1.0",
+  "name": "Rapid file encryption simulation",
+  "created": "2026-04-16T09:25:00Z",
+  "modified": "2026-04-16T09:25:00Z",
+  "labels": ["synthetic", "malicious", "ransomware", "windows-endpoint"],
+  "objective": "Simulate fast encryption-like file churn across multiple directories with a suspicious outbound connection.",
+  "host_profile": {
+    "hostname": "design-laptop-03",
+    "os": "Windows 11",
+    "department": "design"
+  },
+  "timeline": [
+    {"offset_seconds": 0, "event_ref": "event--001"},
+    {"offset_seconds": 4, "event_ref": "event--002"},
+    {"offset_seconds": 8, "event_ref": "event--003"},
+    {"offset_seconds": 9, "event_ref": "event--004"},
+    {"offset_seconds": 10, "event_ref": "event--005"},
+    {"offset_seconds": 11, "event_ref": "event--006"},
+    {"offset_seconds": 12, "event_ref": "event--007"}
+  ],
+  "events": [
+    {
+      "id": "event--001",
+      "event_type": "process_create",
+      "process_name": "payload.exe",
+      "parent_process_name": "powershell.exe",
+      "command_line": "C:/Users/Alice/AppData/Local/Temp/payload.exe",
+      "stage": "pre-impact"
+    },
+    {
+      "id": "event--002",
+      "event_type": "network_connect",
+      "process_name": "payload.exe",
+      "parent_process_name": "powershell.exe",
+      "network_destination_ip": "198.51.100.44",
+      "network_destination_port": 443,
+      "stage": "pre-impact"
+    },
+    {
+      "id": "event--003",
+      "event_type": "file_modify",
+      "process_name": "payload.exe",
+      "file_path": "C:/Users/Alice/Documents/design1.psd",
+      "stage": "impact"
+    },
+    {
+      "id": "event--004",
+      "event_type": "file_rename",
+      "process_name": "payload.exe",
+      "file_path": "C:/Users/Alice/Documents/design1.psd",
+      "target_file_path": "C:/Users/Alice/Documents/design1.enc",
+      "stage": "impact"
+    },
+    {
+      "id": "event--005",
+      "event_type": "file_modify",
+      "process_name": "payload.exe",
+      "file_path": "C:/Users/Alice/Desktop/brief.pdf",
+      "stage": "impact"
+    },
+    {
+      "id": "event--006",
+      "event_type": "file_rename",
+      "process_name": "payload.exe",
+      "file_path": "C:/Users/Alice/Desktop/brief.pdf",
+      "target_file_path": "C:/Users/Alice/Desktop/brief.enc",
+      "stage": "impact"
+    },
+    {
+      "id": "event--007",
+      "event_type": "file_rename",
+      "process_name": "payload.exe",
+      "file_path": "C:/Users/Alice/Pictures/mockup.png",
+      "target_file_path": "C:/Users/Alice/Pictures/mockup.enc",
+      "stage": "impact"
+    }
+  ],
+  "expected_findings": {
+    "severity": "critical",
+    "rules_triggered": ["mass_file_changes", "bulk_extension_rename", "suspicious_outbound_connection"],
+    "attack_techniques": ["T1486"]
+  }
+}

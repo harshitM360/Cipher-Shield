@@ -1,0 +1,71 @@
+{
+  "type": "scenario-bundle",
+  "id": "scenario-bundle--malicious-002",
+  "spec_version": "1.0",
+  "name": "Shadow copy deletion and mass rename",
+  "created": "2026-04-16T09:20:00Z",
+  "modified": "2026-04-16T09:20:00Z",
+  "labels": ["synthetic", "malicious", "ransomware", "windows-endpoint"],
+  "objective": "Simulate ransomware deleting recovery artifacts and renaming user files with a locked extension.",
+  "host_profile": {
+    "hostname": "finance-laptop-02",
+    "os": "Windows 11",
+    "department": "finance"
+  },
+  "timeline": [
+    {"offset_seconds": 0, "event_ref": "event--001"},
+    {"offset_seconds": 6, "event_ref": "event--002"},
+    {"offset_seconds": 15, "event_ref": "event--003"},
+    {"offset_seconds": 16, "event_ref": "event--004"},
+    {"offset_seconds": 17, "event_ref": "event--005"}
+  ],
+  "events": [
+    {
+      "id": "event--001",
+      "event_type": "process_create",
+      "process_name": "powershell.exe",
+      "parent_process_name": "winword.exe",
+      "command_line": "powershell.exe -File C:/Users/Alice/AppData/Local/Temp/loader.ps1",
+      "stage": "pre-impact"
+    },
+    {
+      "id": "event--002",
+      "event_type": "backup_delete_attempt",
+      "process_name": "vssadmin.exe",
+      "parent_process_name": "powershell.exe",
+      "command_line": "vssadmin delete shadows /all /quiet",
+      "stage": "pre-impact"
+    },
+    {
+      "id": "event--003",
+      "event_type": "file_modify",
+      "process_name": "evil_encryptor.exe",
+      "parent_process_name": "powershell.exe",
+      "file_path": "C:/Users/Alice/Documents/budget.xlsx",
+      "stage": "impact"
+    },
+    {
+      "id": "event--004",
+      "event_type": "file_rename",
+      "process_name": "evil_encryptor.exe",
+      "parent_process_name": "powershell.exe",
+      "file_path": "C:/Users/Alice/Documents/budget.xlsx",
+      "target_file_path": "C:/Users/Alice/Documents/budget.locked",
+      "stage": "impact"
+    },
+    {
+      "id": "event--005",
+      "event_type": "file_rename",
+      "process_name": "evil_encryptor.exe",
+      "parent_process_name": "powershell.exe",
+      "file_path": "C:/Users/Alice/Documents/report.docx",
+      "target_file_path": "C:/Users/Alice/Documents/report.locked",
+      "stage": "impact"
+    }
+  ],
+  "expected_findings": {
+    "severity": "critical",
+    "rules_triggered": ["suspicious_parent_child", "shadow_copy_deletion", "mass_file_changes"],
+    "attack_techniques": ["T1490", "T1486"]
+  }
+}

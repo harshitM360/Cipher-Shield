@@ -1,0 +1,64 @@
+{
+  "type": "scenario-bundle",
+  "id": "scenario-bundle--benign-002",
+  "spec_version": "1.0",
+  "name": "Software update activity",
+  "created": "2026-04-16T09:05:00Z",
+  "modified": "2026-04-16T09:05:00Z",
+  "labels": ["synthetic", "benign", "windows-endpoint", "software-update"],
+  "objective": "Simulate an approved updater replacing application binaries and writing installer logs.",
+  "host_profile": {
+    "hostname": "eng-laptop-02",
+    "os": "Windows 11",
+    "department": "engineering"
+  },
+  "timeline": [
+    {"offset_seconds": 0, "event_ref": "event--001"},
+    {"offset_seconds": 4, "event_ref": "event--002"},
+    {"offset_seconds": 8, "event_ref": "event--003"},
+    {"offset_seconds": 12, "event_ref": "event--004"},
+    {"offset_seconds": 25, "event_ref": "event--005"}
+  ],
+  "events": [
+    {
+      "id": "event--001",
+      "event_type": "process_create",
+      "process_name": "updater.exe",
+      "parent_process_name": "services.exe",
+      "command_line": "C:/Program Files/App/updater.exe --silent"
+    },
+    {
+      "id": "event--002",
+      "event_type": "file_modify",
+      "process_name": "updater.exe",
+      "file_path": "C:/Program Files/App/app.exe",
+      "stage": "benign"
+    },
+    {
+      "id": "event--003",
+      "event_type": "file_modify",
+      "process_name": "updater.exe",
+      "file_path": "C:/Program Files/App/app.dll",
+      "stage": "benign"
+    },
+    {
+      "id": "event--004",
+      "event_type": "file_create",
+      "process_name": "updater.exe",
+      "file_path": "C:/ProgramData/App/update.log",
+      "stage": "benign"
+    },
+    {
+      "id": "event--005",
+      "event_type": "process_terminate",
+      "process_name": "updater.exe",
+      "parent_process_name": "services.exe",
+      "stage": "benign"
+    }
+  ],
+  "expected_findings": {
+    "severity": "low",
+    "rules_triggered": [],
+    "attack_techniques": []
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "type": "scenario-bundle",
+  "id": "scenario-bundle--benign-003",
+  "spec_version": "1.0",
+  "name": "Admin bulk rename script",
+  "created": "2026-04-16T09:10:00Z",
+  "modified": "2026-04-16T09:10:00Z",
+  "labels": ["synthetic", "benign", "windows-endpoint", "admin-activity"],
+  "objective": "Simulate a legitimate administrative script renaming archived files in a controlled directory.",
+  "host_profile": {
+    "hostname": "ops-workstation-01",
+    "os": "Windows 11",
+    "department": "operations"
+  },
+  "timeline": [
+    {"offset_seconds": 0, "event_ref": "event--001"},
+    {"offset_seconds": 3, "event_ref": "event--002"},
+    {"offset_seconds": 5, "event_ref": "event--003"},
+    {"offset_seconds": 7, "event_ref": "event--004"},
+    {"offset_seconds": 9, "event_ref": "event--005"}
+  ],
+  "events": [
+    {
+      "id": "event--001",
+      "event_type": "process_create",
+      "process_name": "powershell.exe",
+      "parent_process_name": "explorer.exe",
+      "command_line": "powershell.exe -File C:/AdminTools/rename_archives.ps1"
+    },
+    {
+      "id": "event--002",
+      "event_type": "file_rename",
+      "process_name": "powershell.exe",
+      "file_path": "D:/Archive/Q1/report_old_01.txt",
+      "target_file_path": "D:/Archive/Q1/report_2026_01.txt",
+      "stage": "benign"
+    },
+    {
+      "id": "event--003",
+      "event_type": "file_rename",
+      "process_name": "powershell.exe",
+      "file_path": "D:/Archive/Q1/report_old_02.txt",
+      "target_file_path": "D:/Archive/Q1/report_2026_02.txt",
+      "stage": "benign"
+    },
+    {
+      "id": "event--004",
+      "event_type": "file_rename",
+      "process_name": "powershell.exe",
+      "file_path": "D:/Archive/Q1/report_old_03.txt",
+      "target_file_path": "D:/Archive/Q1/report_2026_03.txt",
+      "stage": "benign"
+    },
+    {
+      "id": "event--005",
+      "event_type": "process_terminate",
+      "process_name": "powershell.exe",
+      "parent_process_name": "explorer.exe",
+      "stage": "benign"
+    }
+  ],
+  "expected_findings": {
+    "severity": "medium",
+    "rules_triggered": ["bulk_rename_in_controlled_directory"],
+    "attack_techniques": []
+  }
+}

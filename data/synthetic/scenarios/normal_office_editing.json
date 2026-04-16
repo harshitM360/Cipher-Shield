@@ -1,0 +1,56 @@
+{
+  "type": "scenario-bundle",
+  "id": "scenario-bundle--benign-001",
+  "spec_version": "1.0",
+  "name": "Normal office editing workflow",
+  "created": "2026-04-16T09:00:00Z",
+  "modified": "2026-04-16T09:00:00Z",
+  "labels": ["synthetic", "benign", "windows-endpoint"],
+  "objective": "Simulate routine document editing and saving activity on a Windows office laptop.",
+  "host_profile": {
+    "hostname": "hr-laptop-01",
+    "os": "Windows 11",
+    "department": "hr"
+  },
+  "timeline": [
+    {"offset_seconds": 0, "event_ref": "event--001"},
+    {"offset_seconds": 6, "event_ref": "event--002"},
+    {"offset_seconds": 18, "event_ref": "event--003"},
+    {"offset_seconds": 40, "event_ref": "event--004"}
+  ],
+  "events": [
+    {
+      "id": "event--001",
+      "event_type": "process_create",
+      "process_name": "winword.exe",
+      "parent_process_name": "explorer.exe",
+      "command_line": "C:/Program Files/Microsoft Office/root/Office16/WINWORD.EXE"
+    },
+    {
+      "id": "event--002",
+      "event_type": "file_modify",
+      "process_name": "winword.exe",
+      "file_path": "C:/Users/Bob/Documents/offer_letter.docx",
+      "stage": "benign"
+    },
+    {
+      "id": "event--003",
+      "event_type": "file_modify",
+      "process_name": "winword.exe",
+      "file_path": "C:/Users/Bob/Documents/policy_notes.docx",
+      "stage": "benign"
+    },
+    {
+      "id": "event--004",
+      "event_type": "file_create",
+      "process_name": "winword.exe",
+      "file_path": "C:/Users/Bob/Documents/policy_notes_autosave.tmp",
+      "stage": "benign"
+    }
+  ],
+  "expected_findings": {
+    "severity": "low",
+    "rules_triggered": [],
+    "attack_techniques": []
+  }
+}
