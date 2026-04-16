@@ -1,0 +1,47 @@
+{
+  "scenario_id": "scenario-bundle--benign-002",
+  "hostname": "eng-laptop-02",
+  "labels": [
+    "synthetic",
+    "benign",
+    "windows-endpoint",
+    "software-update"
+  ],
+  "total_events": 5,
+  "time_span_seconds": 25.0,
+  "process_create_count": 1,
+  "process_terminate_count": 1,
+  "command_exec_count": 0,
+  "network_connection_count": 0,
+  "backup_delete_attempt_count": 0,
+  "file_create_count": 1,
+  "file_modify_count": 2,
+  "file_rename_count": 0,
+  "file_delete_count": 0,
+  "file_activity_count": 3,
+  "unique_process_count": 1,
+  "unique_processes": [
+    "updater.exe"
+  ],
+  "unique_files_touched": 3,
+  "unique_directories_touched": 2,
+  "sensitive_directory_touch_count": 0,
+  "extension_change_count": 0,
+  "suspicious_parent_child_count": 0,
+  "suspicious_parent_child": false,
+  "suspicious_command_count": 0,
+  "suspicious_command": false,
+  "backup_delete_attempt": false,
+  "max_events_in_10s": 3,
+  "max_file_events_in_10s": 3,
+  "burst_activity_score": 2.0,
+  "stage_counts": {
+    "benign": 5
+  },
+  "event_type_counts": {
+    "process_create": 1,
+    "file_modify": 2,
+    "file_create": 1,
+    "process_terminate": 1
+  }
+}
